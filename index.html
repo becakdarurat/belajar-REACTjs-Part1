@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar React</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .kosong {
+            margin: 0 25px;
+        }
+        .reset {
+            display: block;
+            margin: 20px 28px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- State adalah data yang berubah dari waktu ke waktu yang dapat mempengaruhi tampilan dan perilaku komponen. -->
+
+    <div id="root"></div>
+
+    <script type="text/babel">    
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+
+        function Header({author}){
+            return (
+                 <h1>Belajar React bareng {author ? author : 'WPU'}</h1>
+                );
+        }
+        function HomePage(){
+            const [likes, setLikes] = React.useState(0);
+
+            function handleClick() {
+                    setLikes(likes + 1);
+            }
+
+            function freeClick() {
+                // if (likes > 0) {
+                    setLikes(likes - 1);
+                // }
+            }
+  
+            function resetLikes() {
+                setLikes(0);
+                setdisLikes(0);
+            }
+
+            return (
+                <div>
+                    <button onClick={freeClick}>-</button>
+                    <span className='kosong'>({likes})</span>
+                    <button onClick={handleClick}>+</button>
+                    <button className='reset' onClick={resetLikes}>Reset </button>
+                </div>
+            );
+
+        }
+        root.render(<HomePage/>);
+    </script>
+</body>
+</html>
